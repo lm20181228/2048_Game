@@ -1,0 +1,114 @@
+//颜色
+
+$list:#FFCCCC #FF9999 #FF99CC #CCCCFF #CC99CC #996699 #663366 #9999CC #CC6699 #CC3399 #993366 #0099CC #666699 #999933 #003366;
+$bgcolor:#CCCCCC;
+$basicBorderColor:#fdfafa;
+$colorNum:2;
+//基本信息参数
+$width:300px;
+$height:300px;
+$rowNum:4;
+//游戏框架
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+}
+.color0{
+    background: #FFCCCC;
+}
+//for循环颜色类名
+@for $i from 1 through 15 {
+    .color#{$i} {
+        background: nth($list, $i); 
+    } 
+}
+
+
+
+.gameFrame{
+    border: 1px solid $basicBorderColor;   
+    width: $width;
+    height: $height;
+    background: $bgcolor;
+    margin: 20px auto 50px;
+    >.gameFrameRow{
+        width: $width;
+        height: $height/$rowNum; 
+        .gameFrameUl{
+            width: $width;
+            height: 100%;
+            .gameFrameCell{
+                display: inline-block;
+                border: 1px solid $basicBorderColor;
+                height: 100%;
+                width: $width/$rowNum;
+                float: left;
+                padding: 2px;
+                >span{
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    line-height: $width/$rowNum;
+                    text-align: center;
+                    color: #fff;
+                }
+            }
+        } 
+    }
+}
+$gameControlButtonBgColor:#66CC99;
+$directionsBgColor:#339999;
+$keyColor:#fff;
+@mixin border_radius($num){
+    border-radius: $num;
+}
+//得分区样式
+.scoringArea{
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    .score{
+        
+    }
+}
+//游戏键样式
+.operateKey{
+    text-align: center;
+    //游戏开始键
+    .gameControlButton{
+        height: 30px;
+        padding: 0 8px;
+        display: inline-block;
+        vertical-align: middle;
+        background: $gameControlButtonBgColor;
+        border: none;
+        @include border_radius(4px);
+        color: $keyColor;
+        cursor: pointer;
+    }
+    //方位键
+    .directionsKey{
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+        margin: 0 auto;
+        >div{
+            width: 100px;
+            >span{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                margin-top: 10px;
+                background: $directionsBgColor;
+                @include border_radius(4px);
+                color: $keyColor;
+                cursor: pointer;
+            }
+        }
+    }
+}
